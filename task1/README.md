@@ -25,7 +25,7 @@ Ensure you have `Python 3.8+` installed.
 You can train any of the three models using the following command:  
 
 ```bash
-python train.py --algorithm <model_type> --mnist-dir <path_to_dataset> --epochs 10 --batch 32 --lr 0.001 --save-path <model_file>
+python train.py --algorithm <rf|nn|cnn> --mnist-dir <path_to_dataset> --estimators <int> --max-depth <int> --lr <float> --epochs <int> --batch <int> --save <True|False> --save-path <path_to_model>
 ```
 
 If `--mnist-dir` is not provided, the dataset will be downloaded automatically.
@@ -36,7 +36,7 @@ If `--mnist-dir` is not provided, the dataset will be downloaded automatically.
 
 To classify a single image, run:  
 ```bash
-python test.py --algorithm <model_type> --model-path <model_file> --img <image_path> --save-path <result_json>
+python test.py --algorithm <rf|nn|cnn> --model-path <path_to_model> --img <path_to_image> --save-path <path_to_result> --show <True|False>
 ```
 Predicted probabilities will be written to json file
 
@@ -59,9 +59,9 @@ Each model was trained and evaluated on the MNIST test set. Below is a detailed 
   - Struggles with digits that have straight lines, such as **1, 2, and 7**.  
   - Also misclassifies numbers with rounded segments, like **3 and 8**.   
 
-![](results/confussion matrix rf.png)
+![](results/confussion%20matrix%20rf.png))
 
-![](results/predictions rf.png)
+![](results/predictions%20rf.png)
 
 ### **Feed Forward Neural Network (NN)**   
 - **Accuracy:** **93.7%**  
@@ -69,9 +69,9 @@ Each model was trained and evaluated on the MNIST test set. Below is a detailed 
   - Frequently misclassifies **4 and 9**, often confusing them with each other.
   - Struggles with complex patterns due to limited spatial awareness.  
 
-![](results/confussion matrix nn.png)
+![](results/confussion%20matrix%20nn.png)
 
-![](results/predictions nn.png)
+![](results/predictions%20nn.png)
 
 ### **Convolutional Neural Network (CNN)**   
 - **Accuracy:** **98.1%** (Best performance)  
@@ -80,9 +80,9 @@ Each model was trained and evaluated on the MNIST test set. Below is a detailed 
   - Also misclassifies **9 and 8**, likely due to their rounded shapes.  
   - Despite these weaknesses, CNN achieves the highest accuracy and best overall performance.  
 
-![](results/confussion matrix cnn.png)
+![](results/confussion%20matrix%20cnn.png)
 
-![](results/predictions cnn.png)
+![](results/predictions%20cnn.png)
 
 ### **Summary**  
 | Model | Strengths                                    | Weaknesses |  

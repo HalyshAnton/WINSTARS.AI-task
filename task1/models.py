@@ -149,6 +149,7 @@ class MnistFeedForward(MnistClassifierInterface):
             y (numpy.ndarray): training labels of shape (N)
         """
         X_prep = self.__preprocess(X)
+        y = torch.LongTensor(y)
 
         dataset = list(zip(X_prep, y))
         dataloader = DataLoader(dataset,
@@ -276,6 +277,7 @@ class MnistCNN(MnistClassifierInterface):
             y (numpy.ndarray): labels for the training data of shape (N)
         """
         X_prep = self.__preprocess(X)
+        y = torch.LongTensor(y)
 
         dataset = list(zip(X_prep, y))
         dataloader = torch.utils.data.DataLoader(dataset,

@@ -1,3 +1,4 @@
+import joblib
 from abc import ABC, abstractmethod
 
 
@@ -79,6 +80,24 @@ class MnistRandomForest(MnistClassifierInterface):
             numpy.ndarray: flattened input data of shape (N, 784)
         """
         return X.reshape(-1, 28 * 28)
+
+    def save(self, path='mnist_rf.pkl'):
+        """
+        Saves the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'mnist_rf.pkl')
+        """
+        joblib.dump(self.model, path)
+
+    def load(self, path='mnist_rf.pkl'):
+        """
+        Load the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'mnist_rf.pkl')
+        """
+        self.model = joblib.load(path)
 
 
 class MnistFeedForward(MnistClassifierInterface):
@@ -182,6 +201,24 @@ class MnistFeedForward(MnistClassifierInterface):
                             dtype=torch.float32,
                             device=self.device
                             )
+
+    def save(self, path='mnist_nn.pt'):
+        """
+        Saves the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'nmnist_nn.pt')
+        """
+        torch.save(self.model.state_dict(), path)
+
+    def load(self, path='mnist_nn.pt'):
+        """
+        Load the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'mnist_nn.pt')
+        """
+        self.model.load_state_dict(torch.load(path, weights_only=True))
 
 
 class MnistCNN(MnistClassifierInterface):
@@ -292,6 +329,24 @@ class MnistCNN(MnistClassifierInterface):
                             device=self.device
                             )
 
+    def save(self, path='mnist_cnn.pt'):
+        """
+        Saves the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'nmnist_cnn.pt')
+        """
+        torch.save(self.model.state_dict(), path)
+
+    def load(self, path='mnist_cnn.pt'):
+        """
+        Load the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: 'mnist_cnn.pt')
+        """
+        self.model.load_state_dict(torch.load(path, weights_only=True))
+
 
 class MnistClassifier:
     """
@@ -340,3 +395,27 @@ class MnistClassifier:
             numpy.ndarray: digit probabilities of shape (N, 10)
         """
         return self.model.predict(X)
+
+    def save(self, path=None):
+        """
+        Saves the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: None)
+        """
+        if path:
+            self.model.save(path)
+        else:
+            self.model.save()
+
+    def load(self, path=None):
+        """
+        Load the trained model to a file
+
+        Args:
+            path (str): the file path where the model should be saved (default: None)
+        """
+        if path:
+            self.model.load(path)
+        else:
+            self.model.load()

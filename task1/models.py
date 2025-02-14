@@ -418,4 +418,6 @@ class MnistClassifier:
         if path:
             self.model.load(path)
         else:
+            if not path.endswith('.pt'):
+                path += '.pth'
             self.model.load()

@@ -81,7 +81,7 @@ class MnistRandomForest(MnistClassifierInterface):
             numpy.ndarray: flattened input data of shape (N, 784)
         """
         if X.max() > 1:
-            x = X / 255
+            X = X / 255
 
         return X.reshape(-1, 28 * 28)
 

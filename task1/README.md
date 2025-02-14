@@ -25,7 +25,7 @@ Ensure you have `Python 3.8+` installed.
 You can train any of the three models using the following command:  
 
 ```bash
-python train.py --algorithm <model_type> --mnist-dir <path_to_dataset> --epochs 10 --batch 32 --lr 0.001 --save-path <model_file>
+python train.py --algorithm <rf|nn|cnn> --mnist-dir <path_to_dataset> --estimators <int> --max-depth <int> --lr <float> --epochs <int> --batch <int> --save <True|False> --save-path <path_to_model>
 ```
 
 If `--mnist-dir` is not provided, the dataset will be downloaded automatically.
@@ -36,7 +36,7 @@ If `--mnist-dir` is not provided, the dataset will be downloaded automatically.
 
 To classify a single image, run:  
 ```bash
-python test.py --algorithm <model_type> --model-path <model_file> --img <image_path> --save-path <result_json>
+python test.py --algorithm <rf|nn|cnn> --model-path <path_to_model> --img <path_to_image> --save-path <path_to_result> --show <True|False>
 ```
 Predicted probabilities will be written to json file
 

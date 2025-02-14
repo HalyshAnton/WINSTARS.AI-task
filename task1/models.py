@@ -187,6 +187,11 @@ class MnistFeedForward(MnistClassifierInterface):
 class MnistCNN(MnistClassifierInterface):
     """
     Convolutional Neural Network model for classifying MNIST images
+
+    The model consists of:
+        - Two convolutional layers with ReLU activation, batch normalization, and max pooling
+        - A fully connected layer with dropout
+        - A final softmax output layer for classification
     """
 
     def __init__(self, epochs=10, batch=32, lr=1e-4):

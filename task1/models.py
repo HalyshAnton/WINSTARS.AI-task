@@ -72,6 +72,7 @@ class MnistRandomForest(MnistClassifierInterface):
     def __preprocess(X):
         """
         Preprocesses the input images by flattening them
+        and scale to [0, 1]
 
         Args:
             X (numpy.ndarray): input data of shape (N, 1, 28, 28)
@@ -79,6 +80,9 @@ class MnistRandomForest(MnistClassifierInterface):
         Returns:
             numpy.ndarray: flattened input data of shape (N, 784)
         """
+        if X.max() > 1:
+            x = X / 255
+
         return X.reshape(-1, 28 * 28)
 
     def save(self, path='mnist_rf.pkl'):
@@ -191,6 +195,7 @@ class MnistFeedForward(MnistClassifierInterface):
     def __preprocess(self, X):
         """
         Preprocesses input data by reshaping and converting it to a tensor
+        and scale to [0, 1]
 
         Args:
             X (numpy.ndarray): input data of shape (N, 1, 28, 28)
@@ -198,6 +203,9 @@ class MnistFeedForward(MnistClassifierInterface):
         Returns:
             torch.Tensor: preprocessed input of shape (N, 784)
         """
+        if X.max() > 1:
+            x = X / 255
+
         return torch.tensor(X.reshape(-1, 28*28),
                             dtype=torch.float32,
                             device=self.device
@@ -318,7 +326,7 @@ class MnistCNN(MnistClassifierInterface):
 
     def __preprocess(self, X):
         """
-        Convert data to tensor
+        Convert data to tensor and scale to [0, 1]
 
         Args:
             X (numpy.ndarray): input data of shape (N, 1, 28, 28)
@@ -326,6 +334,9 @@ class MnistCNN(MnistClassifierInterface):
         Returns:
             torch.Tensor: processed data
         """
+        if X.max() > 1:
+            x = X / 255
+
         return torch.tensor(X,
                             dtype=torch.float32,
                             device=self.device

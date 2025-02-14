@@ -236,7 +236,7 @@ class MnistCNN(MnistClassifierInterface):
 
         Args:
             X (numpy.ndarray): input training data of shape (N, 1, 28, 28)
-            y (numpy.ndarray): labels for the training data of shape (N,)
+            y (numpy.ndarray): labels for the training data of shape (N)
         """
         X_prep = self.__preprocess(X)
 
@@ -291,3 +291,52 @@ class MnistCNN(MnistClassifierInterface):
                             dtype=torch.float32,
                             device=self.device
                             )
+
+
+class MnistClassifier:
+    """
+    A class for classifying MNIST images using different algorithms
+
+    Args:
+        algorithm (str): the algorithm to use for classification. should be one of ('rf', 'nn', 'cnn')
+        **kwargs (dict): additional parameters passed to the chosen model class
+    """
+
+    def __init__(self, algorithm, **kwargs):
+        """
+        Initializes the MnistClassifier with the specified algorithm
+
+        Args:
+            algorithm (str): the algorithm to use for classification. can be 'rf', 'nn', or 'cnn'
+            **kwargs (dict): additional parameters for the chosen model class
+        """
+        if algorithm == 'rf':
+            self.model = MnistRandomForest(**kwargs)
+        elif algorithm == 'nn':
+            self.model = MnistFeedForward(**kwargs)
+        elif algorithm == 'cnn':
+            self.model = MnistCNN(**kwargs)
+        else:
+            raise ValueError(f'algorithm should be one of (rf, nn, cnn) not {algorithm}')
+
+    def train(self, X, y):
+        """
+        Trains the model on the provided data
+
+        Args:
+            X (numpy.ndarray): input data of shape (N, 1, 28, 28)
+            y (numpy.ndarray): labels of shape (N)
+        """
+        self.model.train(X, y)
+
+    def predict(self, X):
+        """
+        Makes predictions on the input data using the trained model
+
+        Args:
+            X (numpy.ndarray): input data of shape (N, 1, 28, 28)
+
+        Returns:
+            numpy.ndarray: digit probabilities of shape (N, 10)
+        """
+        return self.model.predict(X)

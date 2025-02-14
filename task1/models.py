@@ -204,7 +204,7 @@ class MnistFeedForward(MnistClassifierInterface):
             torch.Tensor: preprocessed input of shape (N, 784)
         """
         if X.max() > 1:
-            x = X / 255
+            X = X / 255
 
         return torch.tensor(X.reshape(-1, 28*28),
                             dtype=torch.float32,
@@ -335,7 +335,7 @@ class MnistCNN(MnistClassifierInterface):
             torch.Tensor: processed data
         """
         if X.max() > 1:
-            x = X / 255
+            X = X / 255
 
         return torch.tensor(X,
                             dtype=torch.float32,

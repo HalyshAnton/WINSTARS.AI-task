@@ -29,7 +29,6 @@ def parse_args():
 
     parser.add_argument('--algorithm', type=str, choices=['rf', 'nn', 'cnn'],
                         default='rf', help='model type, one of (rf, nn, cnn), default rf')
-
     parser.add_argument('--model-path', type=str, default='mnist_rf.pkl',
                         help='path to trained model file, default mnist_rf.pt')
 

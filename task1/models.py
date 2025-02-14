@@ -231,7 +231,7 @@ class MnistCNN(MnistClassifierInterface):
         - A final softmax output layer for classification
     """
 
-    def __init__(self, epochs=10, batch=32, lr=1e-4):
+    def __init__(self, **kwargs):
         """
         Initializes the MnistCNN model
 
@@ -260,12 +260,12 @@ class MnistCNN(MnistClassifierInterface):
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.model = self.model.to(self.device)
 
-        self.epochs = epochs
-        self.batch_size = batch
+        self.epochs = kwargs.get('epochs', 10)
+        self.batch_size = kwargs.get('batch', 32)
 
-        self.optimizer = torch.optim.Adam(self.model.parameters(),
-                                          lr=lr
-                                          )
+        self.optimizer = Adam(self.model.parameters(),
+                              lr=kwargs.get('lr', 1e-3)
+                              )
 
     def train(self, X, y):
         """

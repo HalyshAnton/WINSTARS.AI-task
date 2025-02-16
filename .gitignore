@@ -7,3 +7,4 @@ mnist_rf.pkl
 mnist_nn.pt
 mnist_cnn.pt
 result.json
+ner_data.csv

@@ -3,6 +3,7 @@ __pycache__
 .idea/*
 
 task1/data/*
+task2/image_data/*
 mnist_rf.pkl
 mnist_nn.pt
 mnist_cnn.pt

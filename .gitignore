@@ -4,8 +4,11 @@ __pycache__
 
 task1/data/*
 task2/image_data/*
+
 mnist_rf.pkl
 mnist_nn.pt
 mnist_cnn.pt
+animal_classifier.pt
 result.json
+labels.json
 ner_data.csv

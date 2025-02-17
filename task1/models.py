@@ -167,6 +167,7 @@ class MnistFeedForward(MnistClassifierInterface):
         for _ in range(self.epochs):
             for X_batch, y_batch in dataloader:
                 y_batch = y_batch.to(self.device)
+                X_batch = X_batch.to(self.device)
 
                 y_pred = self.model(X_batch)
                 loss = loss_fn(y_pred, y_batch)
@@ -299,6 +300,7 @@ class MnistCNN(MnistClassifierInterface):
         for _ in range(self.epochs):
             for X_batch, y_batch in dataloader:
                 y_batch = y_batch.to(self.device)
+                X_batch = X_batch.to(self.device)
 
                 y_pred = self.model(X_batch)
                 loss = loss_fn(y_pred, y_batch)

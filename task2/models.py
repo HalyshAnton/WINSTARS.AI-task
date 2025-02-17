@@ -125,8 +125,6 @@ class AnimalClassifier:
                 optimizer.step()
                 optimizer.zero_grad()
 
-                print(loss.item())
-
     def predict_proba(self, X):
         """
         predicts animal probabilities for a given image

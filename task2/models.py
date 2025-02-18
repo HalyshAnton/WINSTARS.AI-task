@@ -398,7 +398,7 @@ class NERBert(nn.Module):
             return self.crf.decode(emissions, mask=mask.bool())
 
 class NER:
-    def __init__(self, num_tags, **kwargs):
+    def __init__(self, num_tags=22, **kwargs):
         """
         Wrapper class for training and inference of the NERBert model
 
@@ -524,3 +524,64 @@ class NER:
         dataset.set_tags(tags)
 
         self.dataset = dataset
+
+class ImageTextModel:
+    """
+    A model that integrates an image classifier and a named entity recognition (NER) model
+    to compare image labels with extracted text labels.
+    """
+    def __init__(self, image_classifier_path,
+                 image_labels_path,
+                 ner_path,
+                 tags_path
+                 ):
+        """
+       Initializes the ImageTextModel with a
+       pre-trained image classifier and NER model
+
+       Args:
+           image_classifier_path (str):
+                path to the image classifier model file
+           image_labels_path (str):
+                path to the label mapping for the image classifier
+           ner_path (str):
+                path to the NER model file
+           tags_path (str):
+                path to the label mapping for the NER model
+       """
+        self.image_classifier = AnimalClassifier()
+        self.image_classifier.load(image_classifier_path,
+                                   image_labels_path)
+
+        self.ner_model = NER()
+        self.ner_model.load(ner_path, tags_path)
+
+    def compare(self, img, text):
+        """
+        Compares the predicted label from image classifier
+        with the extracted entity from the NER model
+
+        Args:
+            img (PIL.Image):
+                input to be classified
+            text (str):
+                text input to be analyzed for named entities
+
+        Returns:
+            bool: True if the image label matches
+            the extracted text entity, False otherwise
+        """
+        label = self.image_classifier.predict(img)
+        tags = self.ner_model.predict(text)
+
+        label = label.lower()
+
+        tags = [tag[2:] for tag in tags if tag not in ('O', 'NOT_ANIMAL')]
+
+        if tags:
+            tag = tags[0].lower()
+        else:
+            tag = 'NOT_ANIMAL'
+
+        return label == tag
+

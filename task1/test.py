@@ -1,7 +1,7 @@
 import argparse
 import json
 
-import PIL
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 from torchvision.transforms import Resize
@@ -61,12 +61,13 @@ def read_img(path):
     """
     transform = Resize((28, 28))
 
-    img = PIL.Image.open(path)
+    img = Image.open(path)
     img = transform(img)
     img = np.array(img)
     img = np.expand_dims(img, axis=(0, 1))
 
     return img
+
 
 def load_model(algorithm, path):
     """

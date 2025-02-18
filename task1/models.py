@@ -329,7 +329,7 @@ class MnistCNN(MnistClassifierInterface):
         self.model.eval()
         with torch.no_grad():
             logits = self.model(X_prep)
-            probs =  F.softmax(logits, dim=-1)
+            probs = F.softmax(logits, dim=-1)
             return probs.cpu().numpy()
 
     def __preprocess(self, X):

@@ -31,27 +31,27 @@ def parse_args():
 
     parser.add_argument('--algorithm', type=str, choices=['rf', 'nn', 'cnn'],
                         default='rf', help='model type, one of (rf, nn, cnn)'
-    )
+                        )
 
     parser.add_argument('--mnist-dir', type=str, default=None,
                         help='dir where mnist dataset is located'
-    )
+                        )
     parser.add_argument('--estimators', type=int, default=100,
                         help='number of trees'
-    )
+                        )
 
     parser.add_argument('--max-depth', type=int, default=None,
                         help='max depth of trees'
-    )
+                        )
     parser.add_argument('--lr', type=float, default=1e-4,
                         help='learning rate'
-    )
+                        )
     parser.add_argument('--epochs', type=int, default=10,
                         help='number of epochs'
-    )
+                        )
     parser.add_argument('--batch', type=int, default=32,
                         help='batch size'
-    )
+                        )
 
     parser.add_argument('--save', type=bool, default=True,
                         help='whether to save'

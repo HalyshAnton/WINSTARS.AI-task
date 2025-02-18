@@ -1,19 +1,17 @@
 import json
-from itertools import chain
 
-import numpy as np
 import torch
 from torchcrf import CRF
 from torch import nn
-from torchvision import transforms, datasets, models
+from torchvision import transforms, models
 from torch.utils.data import DataLoader, Dataset
 from torch.optim import Adam
 import torch.nn.functional as F
 from transformers import BertModel, AutoTokenizer
-import PIL
 
 
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
 
 class TransformDataset(Dataset):
     """
@@ -306,7 +304,6 @@ class NERDataset(Dataset):
 
         return input_ids, attention_mask, aligned_tags
 
-
     def transform_tags(self, encoding, tags):
         """
         Aligns token-level tags with subword tokenization
@@ -396,6 +393,7 @@ class NERBert(nn.Module):
                              reduction="mean")
         else:
             return self.crf.decode(emissions, mask=mask.bool())
+
 
 class NER:
     def __init__(self, num_tags=22, **kwargs):
@@ -525,6 +523,7 @@ class NER:
 
         self.dataset = dataset
 
+
 class ImageTextModel:
     """
     A model that integrates an image classifier and a named entity recognition (NER) model
@@ -584,4 +583,3 @@ class ImageTextModel:
             tag = 'NOT_ANIMAL'
 
         return label == tag
-

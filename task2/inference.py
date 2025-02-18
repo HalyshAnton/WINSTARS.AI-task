@@ -1,6 +1,6 @@
 import argparse
 
-import PIL
+from PIL import Image
 import matplotlib.pyplot as plt
 
 from models import ImageTextModel
@@ -63,9 +63,10 @@ def read_img(path):
         PIL.Image:
             loaded image
     """
-    img = PIL.Image.open(path)
+    img = Image.open(path)
 
     return img
+
 
 def load_model(image_classifier_path, image_labels_path,
                ner_path, tags_path):

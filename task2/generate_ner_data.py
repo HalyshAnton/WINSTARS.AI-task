@@ -156,6 +156,4 @@ if __name__ == '__main__':
                       columns=['sentence', 'tags']
                       )
 
-    df.to_csv('ner_data.csv')
-    print(df.tail())
-    print(sents_and_tags[-1])
+    df.to_csv('ner_data.csv',  index=False)

@@ -16,7 +16,7 @@ def parse_args():
     --save (bool): Whether to save the model. Default is True.
     --data-dir (str): Path to image data. Default is "image_data".
     --model-path (str): Path for saving the model. Default is "animal_classifier_custom.pt".
-    --labels-path (str): Path for saving animal labels. Default is "labels.custom.json".
+    --labels-path (str): Path for saving animal labels. Default is "labels_custom.json".
 
     Returns:
         dict:
@@ -51,7 +51,7 @@ def parse_args():
                         )
 
     parser.add_argument("--labels-path", type=str,
-                        default="labels.custom.json",
+                        default="labels_custom.json",
                         help="path for saving animal labels"
                         )
 

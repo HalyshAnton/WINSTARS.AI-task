@@ -12,3 +12,5 @@ animal_classifier.pt
 result.json
 labels.json
 ner_data.csv
+ner_model.pt
+tags.json

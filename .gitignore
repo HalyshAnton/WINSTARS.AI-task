@@ -14,3 +14,8 @@ labels.json
 ner_data.csv
 ner_model.pt
 tags.json
+
+animal_classifier_custom.pt
+ner_model_custom.pt
+tags_custom.json
+labels_custom.json

@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from sklearn.ensemble import RandomForestClassifier
 import torch
 from torch import nn
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torch.optim import Adam
 
@@ -191,7 +192,9 @@ class MnistFeedForward(MnistClassifierInterface):
 
         self.model.eval()
         with torch.no_grad():
-            return self.model(X_prep).cpu().numpy()
+            logits = self.model(X_prep)
+            probs = F.softmax(logits, dim=-1)
+            return probs.cpu().numpy()
 
     def __preprocess(self, X):
         """
@@ -228,7 +231,8 @@ class MnistFeedForward(MnistClassifierInterface):
         Args:
             path (str): the file path where the model should be saved (default: 'mnist_nn.pt')
         """
-        self.model.load_state_dict(torch.load(path, weights_only=True))
+        self.model.load_state_dict(torch.load(path, weights_only=True,
+                                              map_location=self.device))
 
 
 class MnistCNN(MnistClassifierInterface):
@@ -324,7 +328,9 @@ class MnistCNN(MnistClassifierInterface):
 
         self.model.eval()
         with torch.no_grad():
-            return self.model(X_prep).cpu().numpy()
+            logits = self.model(X_prep)
+            probs =  F.softmax(logits, dim=-1)
+            return probs.cpu().numpy()
 
     def __preprocess(self, X):
         """
@@ -360,7 +366,8 @@ class MnistCNN(MnistClassifierInterface):
         Args:
             path (str): the file path where the model should be saved (default: 'mnist_cnn.pt')
         """
-        self.model.load_state_dict(torch.load(path, weights_only=True))
+        self.model.load_state_dict(torch.load(path, weights_only=True,
+                                              map_location=self.device))
 
 
 class MnistClassifier:

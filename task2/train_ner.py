@@ -97,7 +97,7 @@ def train(params):
     """
     dataset = load_data(params['data'])
 
-    model = NER(22, **params)
+    model = NER(**params)
 
     model.train(dataset)
 

@@ -400,7 +400,7 @@ class NERBert(nn.Module):
 
 
 class NER:
-    def __init__(self, num_tags=22, **kwargs):
+    def __init__(self, num_tags=18, **kwargs):
         """
         Wrapper class for training and inference of the NERBert model
 

@@ -52,7 +52,7 @@ def load_model(model_path, tags_path):
         NER:
             loaded model ready for prediction
     """
-    model = NER(22)
+    model = NER()
     model.load(model_path, tags_path)
 
     return model

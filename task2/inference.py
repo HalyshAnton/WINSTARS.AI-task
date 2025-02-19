@@ -12,17 +12,23 @@ def parse_args():
     model and making predictions.
 
     Arguments:
+    --text (str): Sentence for prediction. Default is "It's a cat.".
+    --img (str): Path to the image for prediction. Default is 'image_data/Dog/Dog-Train (3).jpeg'.
     --classifier (str): Path to the trained image classifier model file. Default is 'animal_classifier.pt'.
     --labels-path (str): Path to the saved animal labels. Default is 'labels.json'.
     --ner (str): Path to the trained NER model file. Default is 'ner_model.pt'.
     --tags-path (str): Path to the saved tags. Default is 'tags.json'.
-    --img (str): Path to the image for prediction. Default is 'image_data/Dog/Dog-Train (3).jpeg'.
-    --text (str): Sentence for prediction. Default is "It's a cat.".
 
     Returns:
         dict: Dictionary containing the parsed arguments.
     """
     parser = argparse.ArgumentParser(description='Load a trained model and make predictions on an image and text.')
+
+    parser.add_argument('--text', type=str, default="It's a cat.",
+                        help="Sentence for prediction")
+
+    parser.add_argument('--img', type=str, default='image_data/Dog/Dog-Train (3).jpeg',
+                        help='Path to image for prediction')
 
     parser.add_argument("--classifier", type=str,
                         default="animal_classifier.pt",
@@ -39,12 +45,6 @@ def parse_args():
     parser.add_argument("--tags-path", type=str,
                         default="tags.json",
                         help="Path to saved tags")
-
-    parser.add_argument('--img', type=str, default='image_data/Dog/Dog-Train (3).jpeg',
-                        help='Path to image for prediction')
-
-    parser.add_argument('--text', type=str, default="It's a cat.",
-                        help="Sentence for prediction")
 
     args = parser.parse_args()
 
@@ -113,14 +113,8 @@ def main():
 
     is_same = model.compare(img, params['text'])
 
-    plt.title(f"{params['text']}: {is_same}")
-    plt.imshow(img)
-    plt.axis('off')
-    plt.show()
+    return is_same
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except Exception as err:
-        print(f'ERROR: {err}')
+    main()

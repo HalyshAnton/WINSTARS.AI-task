@@ -16,7 +16,7 @@ def parse_args():
 
     arguments:
     --algorithm (str): the model type, one of ('rf', 'nn', 'cnn'). default is 'rf'
-    --model-path (str): path to the trained model file. default is 'mnist_rf.pkl'
+    --model-path (str): path to the trained model file. default is None
     --img (str): path to the image for prediction. default is 'img.png'
     --save-path (str): path to save the prediction results as a JSON file. default is 'result.json'
     --show (bool): whether to show the image with the prediction. default is True
@@ -29,7 +29,7 @@ def parse_args():
 
     parser.add_argument('--algorithm', type=str, choices=['rf', 'nn', 'cnn'],
                         default='rf', help='model type, one of (rf, nn, cnn), default rf')
-    parser.add_argument('--model-path', type=str, default='mnist_rf.pkl',
+    parser.add_argument('--model-path', type=str, default=None,
                         help='path to trained model file, default mnist_rf.pt')
 
     parser.add_argument('--img', type=str, default='img.png',

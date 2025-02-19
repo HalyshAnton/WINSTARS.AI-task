@@ -131,8 +131,7 @@ class MnistFeedForward(MnistClassifierInterface):
             nn.ReLU(),
             nn.Linear(128, 32),
             nn.ReLU(),
-            nn.Linear(32, 10),
-            nn.Softmax(dim=1)
+            nn.Linear(32, 10)
         )
 
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -267,8 +266,7 @@ class MnistCNN(MnistClassifierInterface):
             nn.Linear(32*7*7, 128),
             nn.Dropout(0.2),
             nn.ReLU(),
-            nn.Linear(128, 10),
-            nn.Softmax(dim=1)
+            nn.Linear(128, 10)
         )
 
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'

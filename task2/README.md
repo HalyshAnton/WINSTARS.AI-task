@@ -108,7 +108,11 @@ To run the model, you can use the following command line:
 
 ```bash
 python inference.py --classifier <path_to_animal_classifier> --labels-path <path_to_labels> --ner <path_to_ner_model> --tags-path <path_to_tags> --img <path_to_image> --text <text_input>
+```
 
+or simply
+```bash
+python inference.py --text <text_input> --img <path_to_image>
 ```
 
 ![](results/result.png)

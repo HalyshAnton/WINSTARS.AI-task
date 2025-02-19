@@ -4,7 +4,6 @@ __pycache__
 
 task1/data/*
 task2/image_data/*
-task2/results/*
 
 mnist_rf.pkl
 mnist_nn.pt

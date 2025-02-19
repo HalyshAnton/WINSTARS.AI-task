@@ -56,7 +56,12 @@ The impressive accuracy and ability to generalize across various animals suggest
 
 The **NER model** detects **animal names in text** and differentiates between:  
 - **Actual animals** (e.g., `"Tiger"` referring to the animal).  
-- **Non-animal uses** (e.g., `"Tiger"` in `"Tiger Technology"`).  
+- **Non-animal uses** (e.g., `"Tiger"` in `"Tiger Technology"`).
+
+To generate the NER dataset, you can run the following command:
+```bash
+python generate_ner_data.py
+```
 
 ### 📌 Model: BERT + CRF  
 - **BERT** extracts contextual word embeddings.  
@@ -78,7 +83,7 @@ python train_ner.py --lr <float> --epochs <int> --batch <int> --save <True|False
 ### 🔍 Inference (Prediction)  
 To recognize animals in a sentence, run:  
 ```bash
-python inference_ner.py --model-path <path_to_ner_model> --tags-path <path_to_tags> --sentence <text>
+python inference_ner.py --model-path <path_to_ner_model> --tags-path <path_to_tags> --text <text>
 ```
 
 ### NER Model Evaluation  

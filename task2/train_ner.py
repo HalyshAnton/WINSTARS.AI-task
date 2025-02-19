@@ -112,8 +112,6 @@ def main():
     params = parse_args()
     model = train(params)
 
-    print(model.predict('hello, its pretty cat'))
-
     if params['save']:
         model.save(params['model_path'], params['tags_path'])
 

@@ -1,1 +1,0 @@
-# WINSTARS.AI-task

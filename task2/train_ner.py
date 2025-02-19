@@ -15,8 +15,8 @@ def parse_args():
     --batch (int): Batch size used for training the model. Default is 32.
     --save (bool): Whether to save the model. Default is True.
     --data (str): Path to data. Default is "ner_data.csv".
-    --model-path (str): Path for saving the model. Default is "ner_model_custom.pt".
-    --tags-path (str): Path for saving animal labels. Default is "tags_custom.json".
+    --model-path (str): Path for saving the model. Default is "ner_model.pt".
+    --tags-path (str): Path for saving animal labels. Default is "tags.json".
 
     Returns:
         dict:
@@ -46,12 +46,12 @@ def parse_args():
                         )
 
     parser.add_argument("--model-path", type=str,
-                        default="ner_model_custom.pt",
+                        default="ner_model.pt",
                         help="path for saving the model"
                         )
 
     parser.add_argument("--tags-path", type=str,
-                        default="tags_custom.json",
+                        default="tags.json",
                         help="path for saving animal labels"
                         )
 

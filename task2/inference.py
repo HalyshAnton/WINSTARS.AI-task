@@ -24,10 +24,10 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description='Load a trained model and make predictions on an image and text.')
 
-    parser.add_argument('--text', type=str, default="It's a cat.",
+    parser.add_argument('text', type=str, default="It's a cat.",
                         help="Sentence for prediction")
 
-    parser.add_argument('--img', type=str, default='image_data/Dog/Dog-Train (3).jpeg',
+    parser.add_argument('img', type=str, default='image_data/Dog/Dog-Train (3).jpeg',
                         help='Path to image for prediction')
 
     parser.add_argument("--classifier", type=str,

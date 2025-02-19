@@ -15,8 +15,8 @@ def parse_args():
     --batch (int): Batch size used for training the model. Default is 32.
     --save (bool): Whether to save the model. Default is True.
     --data-dir (str): Path to image data. Default is "image_data".
-    --model-path (str): Path for saving the model. Default is "animal_classifier_custom.pt".
-    --labels-path (str): Path for saving animal labels. Default is "labels_custom.json".
+    --model-path (str): Path for saving the model. Default is "animal_classifier.pt".
+    --labels-path (str): Path for saving animal labels. Default is "labels.json".
 
     Returns:
         dict:
@@ -46,12 +46,12 @@ def parse_args():
                         )
 
     parser.add_argument("--model-path", type=str,
-                        default="animal_classifier_custom.pt",
+                        default="animal_classifier.pt",
                         help="path for saving the model"
                         )
 
     parser.add_argument("--labels-path", type=str,
-                        default="labels_custom.json",
+                        default="labels.json",
                         help="path for saving animal labels"
                         )
 

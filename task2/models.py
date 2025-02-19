@@ -80,7 +80,7 @@ class AnimalClassifier:
             torch.nn.Module:
                 pre-trained VGG19 model with frozen parameters
         """
-        vgg = models.vgg19_bn(weights=models.VGG19_BN_Weights.DEFAULT)
+        vgg = models.vgg19(weights=models.VGG19_Weights.DEFAULT)
 
         for param in vgg.parameters():
             param.requires_grad = False
@@ -98,7 +98,9 @@ class AnimalClassifier:
         self.labels = dataset.classes
         self.model.classifier = nn.Sequential(
             self.dropout,
-            nn.Linear(self.features_dim, len(self.labels))
+            nn.Linear(self.features_dim, 256),
+            nn.ReLU(),
+            nn.Linear(256, len(self.labels))
         )
 
         self.model = self.model.to(self.device)
@@ -205,7 +207,9 @@ class AnimalClassifier:
 
         self.model.classifier = nn.Sequential(
             self.dropout,
-            nn.Linear(self.features_dim, len(self.labels))
+            nn.Linear(self.features_dim, 256),
+            nn.ReLU(),
+            nn.Linear(256, len(self.labels))
         )
 
         weights = torch.load(model_path, weights_only=True,

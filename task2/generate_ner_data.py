@@ -103,7 +103,7 @@ def get_tags(sentence, combs):
             tag_key = tag_key[1:-1]
             tag_values = combs[tag_key].upper().split()
 
-            if len(tag_values) == 1:
+            if tag_key == 'ANIMAL':
                 tags.append('B-'+tag_values[0])
             else:
                 placeholders = ['I-NOT_ANIMAL'] * len(tag_values)
